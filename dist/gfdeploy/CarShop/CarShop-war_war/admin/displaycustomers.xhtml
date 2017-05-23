@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <h:head>   
+          <title>Display Customers</title>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="add-customer-style.css"  />
+    </h:head>
+    <h:body>
+      <ui:composition template="../template.xhtml">
+
+        
+   
+    
+            <ui:define name="content">
+                
+                <h:dataTable value="#{carController.customerlist}" var="customer" border="0" cellpadding="2" cellspacing="0" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Customer ID"/>
+                            </f:facet>
+                            <h:outputText value="#{customer.custid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Name"/>
+                            </f:facet>
+                            <h:outputText value="#{customer.custname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Surname"/>
+                            </f:facet>
+                            <h:outputText value="#{customer.surname}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Street"/>
+                            </f:facet>
+                            <h:outputText value="#{customer.street}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="City"/>
+                            </f:facet>
+                            <h:outputText value="#{customer.city}"/>
+                        </h:column>
+                             <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="County"/>
+                            </f:facet>
+                            <h:outputText value="#{customer.county}"/>
+                        </h:column>
+                          <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Country"/>
+                            </f:facet>
+                            <h:outputText value="#{customer.country}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Date of Birth"/>
+                            </f:facet>
+                            <h:outputText value="#{customer.dob}"/>
+                        </h:column>
+                         
+                         
+                     
+                   
+</h:dataTable>
+                
+                <br></br>
+              
+                
+             
+                  <h:form>
+             <br></br>
+              <h1>Please type the id of customer you want to delete.</h1>
+         
+              <h:inputText id="id" value="#{carController.adminChosenCustomerId}"> </h:inputText>  
+            <h:commandButton value="Delete" action="#{carController.deleteCustomerRow()}"/>           
+             
+    
+         </h:form>
+                
+                <br> </br>
+                
+                <h:form>
+             <br></br>
+              <h1>Please type the name and the city of customer you want to search.</h1>
+         
+              <h:inputText id="name" value="#{carController.adminChosenCustomerName}"> </h:inputText>  
+                <h:inputText id="city" value="#{carController.adminChosenCustomerCity}"> </h:inputText> 
+            <h:commandButton value="Search" action="#{carController.searchCustomer()}"/>           
+             
+    
+         </h:form>
+       
+         </ui:define>
+              
+              </ui:composition>
+  
+       
+    </h:body>
+</html>
+

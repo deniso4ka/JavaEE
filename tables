@@ -1,0 +1,64 @@
+CREATE TABLE cust (
+  custId INT NOT NULL,
+  custName VARCHAR(45),
+  surname VARCHAR(45),
+  street VARCHAR(45),
+  city VARCHAR(45),
+  county VARCHAR(45),
+  country VARCHAR(45),
+  dob DATE,
+  phone VARCHAR(45),
+  email VARCHAR(45),
+  PRIMARY KEY (custId));
+  
+  
+CREATE TABLE purchase (
+  purchaseId INT NOT NULL,
+  purchaseDate DATE,
+  carId INT NOT NULL,
+  custId INT NOT NULL,
+  PRIMARY KEY (purchaseId, custId),
+  CONSTRAINT fk_purchase_car
+    FOREIGN KEY (carId)
+    REFERENCES car (carId)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT fk_purchase_cust1
+    FOREIGN KEY (custId)
+    REFERENCES cust (custId)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+
+
+CREATE TABLE car(
+  carId INT NOT NULL,
+  make VARCHAR(45),
+  model VARCHAR(45),
+  yearMade VARCHAR(45),
+  price DOUBLE ,
+  color VARCHAR(45),
+  engine VARCHAR(45),
+  description VARCHAR(150),
+  image VARCHAR(45),
+  PRIMARY KEY (carId));
+
+values (1,'opel','Insignia','2015',2000,'green','3.0','bla, bla, bla', 'image1.jpg');
+Insert into car (carId,make,model,yearMade,price,color,engine,description,image)
+values (2,'opel','Vectra','2014',2000,'red','2.0','bla, bla, bla', 'image2.jpg');
+Insert into car (carId,make,model,yearMade,price,color,engine,description,image)
+Insert into car (carId,make,model,yearMade,price,color,engine,description,image)
+values (7,'nissan','almera','2013',6000,'black','1.6','bla, bla, bla', 'image7.jpg');
+Insert into car (carId,make,model,yearMade,price,color,engine,description,image)
+values (8,'nissan','micra','2015',5000,'red','1.0','bla, bla, bla', 'image9.jpg');
+
+values (3,'opel','Corsa','2013',3000,'blue','1.0','bla, bla, bla', 'image3.jpg');
+Insert into car (carId,make,model,yearMade,price,color,engine,description,image)
+values (4,'audi','a6','2015',5000,'yellow','4.0','bla, bla, bla', 'image4.jpg');
+Insert into car (carId,make,model,yearMade,price,color,engine,description,image)
+values (5,'audi','a8','2014',10000,'white','3.0','bla, bla, bla', 'image5.jpg');
+Insert into car (carId,make,model,yearMade,price,color,engine,description,image)
+values (6,'audi','a3','2013',3000,'black','1.6','bla, bla, bla', 'image6.jpg');
+Insert into car (carId,make,model,yearMade,price,color,engine,description,image)
+values (9,'nissan','micra','2015',5000,'red','1.0','bla, bla, bla', 'image9.jpg');
+
