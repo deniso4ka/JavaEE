@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+         <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="add-customer-style.css"  />
+        <title>Admin page</title>
+        
+    </h:head>
+    <h:body>
+        
+          <ui:composition template="../template.xhtml">
+              
+
+           
+            <ui:define name="content">
+             
+          
+        
+        <h:graphicImage library="images" name="logo.png" ></h:graphicImage>
+        <a href="../index.xhtml">Back to home page</a>
+        <h1>Car List</h1>
+        <h:form>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+ 
+<!--the Filter -->           
+           <h:panelGrid columns="3">
+               
+        
+</h:panelGrid>    
+
+<!-- checking there is data to display -->           
+<h:outputText escape="false" value="No customers were found" rendered="#{carController.makes.rowCount == 0}"/>
+               
+<h:panelGroup rendered="#{carController.makes.rowCount > 0}">
+<!-- the data table of customer details, create from the items object -->           
+<h:dataTable value="#{carController.makes}" var="car" border="0" cellpadding="2" cellspacing="0" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Car ID"/>
+                            </f:facet>
+                            <h:outputText value="#{car.carid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Model"/>
+                            </f:facet>
+                            <h:outputText value="#{car.model}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Make"/>
+                            </f:facet>
+                            <h:outputText value="#{car.make}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="YearMade"/>
+                            </f:facet>
+                            <h:outputText value="#{car.yearmade}"/>
+                        </h:column>
+                         <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Color"/>
+                            </f:facet>
+                            <h:outputText value="#{car.color}"/>
+                        </h:column>
+                             <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Engine"/>
+                            </f:facet>
+                            <h:outputText value="#{car.engine}"/>
+                        </h:column>
+                          <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Price"/>
+                            </f:facet>
+                            <h:outputText value="#{car.price}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Description"/>
+                            </f:facet>
+                            <h:outputText value="#{car.description}"/>
+                        </h:column>
+                          <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Image"/>
+                            </f:facet>
+                              <h:outputText value="#{car.image}"/>
+                        </h:column>
+                     
+                     
+</h:dataTable>
+                </h:panelGroup>
+</h:form>
+        
+        <h:form>
+             <br></br>
+            <h:commandButton value="Create a new row" action="createCar" />
+            <br></br>
+            <h:outputLabel for="id"> Please type the car Id you want to delete or edit.
+            <h:inputText id="id" value="#{carController.idOfPickedCar}"> </h:inputText>
+            </h:outputLabel>   
+            <h:commandButton value="Edit" action="#{carController.editCarPage()}" />
+            <h:commandButton value="Delete" action="#{carController.deleteRow()}" />           
+             
+    
+         </h:form>
+        <br></br> <br></br> <br></br>
+        <h:form>
+             <br></br>
+           
+            <h:commandButton value="Display or Delete Customers" action="#{carController.displayCustomers()}" />
+            <h:commandButton value="Display or Delete Transaction" action="#{carController.displayTransactions()}" />           
+             
+    
+         </h:form>
+        
+        
+            </ui:define>
+              
+              </ui:composition>
+    </h:body>
+</html>
+

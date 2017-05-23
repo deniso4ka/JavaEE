@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <h:head>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="add-customer-style.css"  />
+        <title>Create Car page</title>
+    </h:head>
+    <h:body>
+        
+          <ui:composition template="../template.xhtml">
+              
+
+           
+            <ui:define name="content">
+             
+         
+        
+        <h:graphicImage library="images" name="logo.png" ></h:graphicImage>
+
+   
+ 
+        
+       <h1>Please fill new car details.</h1>
+        <h:form id="form" style="margin-top: 10px;" >
+			<h:panelGrid columns="3">
+                            <h:outputLabel>Car id</h:outputLabel><h:inputText id="carid" value="#{carController.carid}" required="true"/>
+                            <h:message for="carid"/>
+                            <h:outputLabel>Make</h:outputLabel><h:inputText id="make" value="#{carController.make}" required="true"/>
+                            <h:message for="make"/>
+                            <h:outputLabel>Model</h:outputLabel> <h:inputText id="model" value="#{carController.model}" required="true"/>
+                            <h:message for="model"/>
+                            <h:outputLabel>Year Made</h:outputLabel><h:inputText id="yearmade" value="#{carController.yearmade}" required="true"/>
+                            <h:message for="yearmade"/>
+                              <h:outputLabel>Price</h:outputLabel><h:inputText id="price" value="#{carController.price}" required="true"/>
+                            <h:message for="price"/>
+                              <h:outputLabel>Color</h:outputLabel><h:inputText id="color" value="#{carController.color}" required="true"/>
+                              <h:message for="color"/>
+                              <h:outputLabel>Engine</h:outputLabel> <h:inputText id="engine" value="#{carController.engine}" required="true"/>
+                            <h:message for="engine"/>
+                            <h:outputLabel>Description</h:outputLabel><h:inputText id="description" value="#{carController.description}" required="true"/>
+                            <h:message for="description"/>
+                            <h:outputLabel>Image</h:outputLabel><h:inputText id="image" value="#{carController.image}" required="true"/>
+                            <h:message for="image"/>
+                            
+                                              
+                                <h:outputLabel /> <h:commandButton value="Add a new car" action="#{carController.insertCarRow()}"/>
+			
+			</h:panelGrid>
+		</h:form>
+        
+        
+        
+            </ui:define>
+              
+              </ui:composition>
+    </h:body>
+
+
+
+</html>
+

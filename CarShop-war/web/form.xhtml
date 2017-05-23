@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+   
+    <h:head>
+        <title>Form</title>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="add-customer-style.css"  />
+    </h:head>
+    <h:body>
+        
+         <ui:composition template="./template.xhtml">
+
+           
+            <ui:define name="content">
+      
+                <h1>Please fill your details.</h1>
+        <h:form id="form" style="margin-top: 10px;" >
+			<h:panelGrid columns="3">
+                            <h:outputLabel>Name</h:outputLabel><h:inputText id="name" value="#{carController.custName}" required="true"/>
+                            <h:message for="name"/>
+                             <h:outputLabel>Surname</h:outputLabel><h:inputText id="surname" value="#{carController.custSurname}" required="true"/>
+                            <h:message for="surname"/>
+                             <h:outputLabel>Street</h:outputLabel> <h:inputText id="street" value="#{carController.street}" required="true"/>
+                            <h:message for="street"/>
+                              <h:outputLabel>City</h:outputLabel><h:inputText id="city" value="#{carController.city}" required="true"/>
+                            <h:message for="city"/>
+                              <h:outputLabel>County</h:outputLabel><h:inputText id="county" value="#{carController.county}" required="true"/>
+                            <h:message for="county"/>
+                              <h:outputLabel>Country</h:outputLabel><h:inputText id="country" value="#{carController.country}" required="true"/>
+                            <h:message for="country"/>
+                             <h:outputLabel>Date(dd-mm-yyyy)</h:outputLabel><h:inputText value="#{carController.date}" required="true">
+                            <f:convertDateTime type="date" pattern="dd-MM-yyyy"/>
+                            </h:inputText>
+                            <h:message for="date"/>
+                            <h:outputLabel>Email</h:outputLabel> <h:inputText id="email" value="#{carController.email}" required="true" validator="#{carController.validateEmail}"/>
+                            <h:message for="email"/>
+                            <h:outputLabel>Phone</h:outputLabel><h:inputText id="phone" value="#{carController.phone}" required="true" validatorMessage="The phone number must fallow the fooloving pattern (0##-#######)"><f:validateRegex pattern="\d{3}-\d{7}" /></h:inputText>
+                            <h:message for="phone"/>
+                            
+                                              
+                                <h:outputLabel /> <h:commandButton value="Save" actionListener="#{carController.insertTemporaryCustomers()}" action="#{carController.redirectToTheThanksPage()}"/>
+			
+			</h:panelGrid>
+		</h:form>
+        
+      </ui:define>
+              
+              </ui:composition>
+        
+    </h:body>
+</html>
+

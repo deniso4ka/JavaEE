@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Template</title>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <style>.backgroundImage{background-image:url("resources/images/backImage.jpg"); }</style>
+    </h:head>
+    <h:body styleClass="backgroundImage">
+      
+          <ui:composition template="./template.xhtml">
+              
+
+           
+            <ui:define name="content">
+             
+                
+              
+        
+        <h:graphicImage library="images" name="logo.png" ></h:graphicImage>
+          <a href="admin/adminhomepage.xhtml">Admin</a>
+        <h1>Car List</h1>
+        <h:form>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+ 
+<!--the Filter -->           
+           <h:panelGrid columns="3">
+                    <h:outputLabel value="Filter by Make" for="selectItems" />
+
+                    <h:selectOneMenu value="#{carController.makeFilter}" >
+                     <f:selectItems value="#{carController.getAllMakes()}"/>
+                    </h:selectOneMenu>
+
+
+ <!--the Filter’s command button calling updateItems() to update the datatable based on the selected state -->           
+<h:commandButton value="apply filter" action="#{carController.updateMakes()}"/>              
+</h:panelGrid>    
+
+<!-- checking there is data to display -->           
+<h:outputText escape="false" value="No customers were found" rendered="#{carController.makes.rowCount == 0}"/>
+               
+<h:panelGroup rendered="#{carController.makes.rowCount > 0}">
+<!-- the data table of customer details, create from the items object -->           
+<h:dataTable value="#{carController.makes}" var="car" border="0" cellpadding="2" cellspacing="0" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Car ID"/>
+                            </f:facet>
+                            <h:outputText value="#{car.carid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Model"/>
+                            </f:facet>
+                            <h:outputText value="#{car.model}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Make"/>
+                            </f:facet>
+                            <h:outputText value="#{car.make}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="YearMade"/>
+                            </f:facet>
+                            <h:outputText value="#{car.yearmade}"/>
+                        </h:column>
+                         <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Color"/>
+                            </f:facet>
+                            <h:outputText value="#{car.color}"/>
+                        </h:column>
+                             <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Engine"/>
+                            </f:facet>
+                            <h:outputText value="#{car.engine}"/>
+                        </h:column>
+                          <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Price"/>
+                            </f:facet>
+                            <h:outputText value="#{car.price}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Description"/>
+                            </f:facet>
+                            <h:outputText value="#{car.description}"/>
+                        </h:column>
+                          <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Image"/>
+                            </f:facet>
+                              <h:graphicImage library="images" name="#{car.image}" ></h:graphicImage>
+                        </h:column>
+                     
+                     
+</h:dataTable>
+                </h:panelGroup>
+</h:form>
+  
+        <h:form>
+              
+            <h:outputLabel for="id"> Please type car Id.
+                <h:inputText id="id" value="#{carController.idOfPickedCar}" required="true">  <f:convertNumber integerOnly="true" type="number" /> </h:inputText>
+              <h:message for="id"/></h:outputLabel>   
+            <h:commandButton value="Purchase" action="#{carController.pageRedirect()}" />
+                        
+             
+    
+         </h:form>
+        
+        
+            </ui:define>
+              
+              </ui:composition>
+        
+    </h:body>
+</html>
+

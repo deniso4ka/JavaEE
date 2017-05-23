@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Display Transactions</title>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputStylesheet library="css" name="add-customer-style.css"  />
+    </h:head>
+    <h:body>
+      <ui:composition template="../template.xhtml">
+
+
+            <ui:define name="content">
+                
+                <h:dataTable value="#{carController.transactionList}" var="transaction" border="0" cellpadding="2" cellspacing="0" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Purchase id and Customer id"/>
+                            </f:facet>
+                            <h:outputText value="#{transaction.purchasePK}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Time"/>
+                            </f:facet>
+                            <h:outputText value="#{transaction.purchasedate}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Car id"/>
+                            </f:facet>
+                            <h:outputText value="#{transaction.carid}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Customer id"/>
+                            </f:facet>
+                            <h:outputText value="#{transaction.cust}"/>
+                        </h:column>
+                       
+</h:dataTable>
+                
+                <br></br>
+              
+                    <h:form>
+             <br></br>
+               <h1>Please type the id of transaction you want to delete.</h1>
+         
+               <h:inputText id="id" value="#{carController.adminChosenTransacionId}"> </h:inputText>  
+               <br></br>
+               <h1>Please type the id of customer you want to delete.</h1>
+         
+               <h:inputText id="id2" value="#{carController.adminChosenCustomerId}"> </h:inputText>  
+            <h:commandButton value="Delete" action="#{carController.deleteTransactionRow()}"/>           
+             
+    
+         </h:form>
+                
+               
+       
+         </ui:define>
+              
+              </ui:composition>
+ 
+       
+    </h:body>
+
+</html>
+
