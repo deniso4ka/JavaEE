@@ -1,1 +1,1 @@
-# JavaEE
+# JavaEE assignment (Car store)
